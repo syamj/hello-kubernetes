@@ -58,6 +58,11 @@ jobs:
       - name: Update chart
         run: |
           sed -i '6s/.*/appVersion: "IMAGE_VERSION"/' deploy/helm/hello-kubernetes/Chart.yaml
+          git config --local user.name "syamj"
           git add deploy/helm/hello-kubernetes/Chart.yaml
           git commit -m "helmchart-version-change"
-          git push 
+      - name: push changed to helm 
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
