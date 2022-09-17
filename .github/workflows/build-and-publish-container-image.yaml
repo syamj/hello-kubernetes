@@ -57,7 +57,7 @@ jobs:
           docker push $IMAGE:$IMAGE_MAJOR_VERSION.$IMAGE_MINOR_VERSION
       - name: Update chart
         run: |
-          sed -i '6s/.*/appVersion: "$IMAGE_VERSION"/' deploy/helm/hello-kubernetes/Chart.yaml
+          sed -i "6s/.*/appVersion: $IMAGE_VERSION/" deploy/helm/hello-kubernetes/Chart.yaml
           git config --local user.name "syamj"
           git add deploy/helm/hello-kubernetes/Chart.yaml
           git commit -m "helmchart-version-change"
